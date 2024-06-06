@@ -1,6 +1,6 @@
 <div class="p-8 flex items-start justify-center">
   <form
-    class="w-full py-4 px-6 max-w-md bg-white border border-gray-200 rounded-lg shadow flex flex-col gap-4"
+    class="w-full py-4 px-6 max-w-lg bg-white border border-gray-200 rounded-lg shadow flex flex-col gap-4"
     [formGroup]="registerForm"
     (ngSubmit)="registerForm.valid && register()"
     autocomplete="off"
@@ -13,18 +13,21 @@
       [formControl]="$any(registerForm.controls['rut'])"
       label="RUT"
       placeholder="Ingrese su RUT. Ej: 12345678-9"
+      requiredMessage="El RUT es requerido"
     />
 
     <app-text-input
       [formControl]="$any(registerForm.controls['name'])"
       label="Nombre completo"
       placeholder="Ingrese su nombre completo"
+      requiredMessage="El nombre completo es requerido"
     />
 
     <app-text-input
       [formControl]="$any(registerForm.controls['birthday'])"
       label="Fecha de nacimiento"
-      placeholder="Ingrese su fecha de nacimiento en formato dd/mm/yyyy"
+      placeholder="Ingrese su fecha de nacimiento en formato dd/mm/yy"
+      requiredMessage="La fecha de nacimiento es requerida"
     />
 
     <app-text-input
@@ -32,6 +35,7 @@
       label="Correo electrónico"
       [type]="'email'"
       placeholder="Ingrese su correo electrónico"
+      requiredMessage="El correo electrónico es requerido"
     />
 
     <app-select-input
@@ -39,6 +43,7 @@
       label="Género"
       placeholder="Seleccione un género"
       [options]="genderOptions"
+      requiredMessage="El género es requerido"
     />
 
     <app-text-input
@@ -46,6 +51,7 @@
       label="Contraseña"
       [type]="'password'"
       placeholder="Ingrese su contraseña"
+      requiredMessage="La contraseña es requerida"
     />
 
     <app-text-input
@@ -53,18 +59,15 @@
       label="Confirme la contraseña"
       [type]="'password'"
       placeholder="Confirme su contraseña"
+      requiredMessage="La confirmación de la contraseña es requerida"
     />
 
     <div
-      *ngIf="this.showErrors"
+      *ngIf="errorMessage"
       class="p-4 text-sm text-red-800 rounded-lg bg-red-50"
       role="alert"
     >
-      <ng-container *ngFor="let error of this.errorMessages">
-        <ng-container *ngIf="error.message != ''">
-          <span class="font-medium">Error!</span> {{ error.message }}
-        </ng-container>
-      </ng-container>
+      <span class="font-medium">Error!</span> {{ errorMessage }}
     </div>
 
     <button
