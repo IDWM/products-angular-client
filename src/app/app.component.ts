@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
 
   setCurrentAuth() {
     const authString = localStorage.getItem('auth');
-    console.log('auth', authString);
     if (!authString) return;
     const auth: Auth = JSON.parse(authString);
     this.authService.setCurrentAuth(auth);
