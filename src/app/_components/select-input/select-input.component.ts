@@ -10,6 +10,7 @@ export class SelectInputComponent implements ControlValueAccessor {
   @Input() label: string = '';
   @Input() placeholder: string = '';
   @Input() options: { value: any ; text: string  }[] = [];
+  @Input() requiredMessage: string = '';
 
   constructor(@Self() public ngControl: NgControl) {
     this.ngControl.valueAccessor = this;
